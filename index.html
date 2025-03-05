@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THEGIVINGFOUNDATION - Charity for a Better Tomorrow</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f0f8ff; /* AliceBlue for a light base */
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+    
+    /* Header & Navigation */
+    header {
+      background: #001f3f; /* Dark blue */
+      color: #fff;
+      border-bottom: 1px solid #004080;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      max-height: 60px;
+      margin-right: 10px;
+    }
+    nav ul.nav-list {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul.nav-list li {
+      margin-left: 20px;
+    }
+    nav ul.nav-list li a {
+      color: #fff;
+      font-weight: normal;
+      transition: color 0.3s;
+    }
+    nav ul.nav-list li a:hover {
+      color: #28a745; /* Green accent on hover */
+    }
+    .mobile-menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .mobile-menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 4px 0;
+      background: #fff;
+      transition: all 0.3s;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, #001f3f, #003366); /* Dark blue gradient */
+      color: #fff;
+      padding: 120px 0;
+      text-align: center;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 128, 0, 0.3); /* Subtle green overlay */
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+    .hero .btn {
+      background: #28a745; /* Green button */
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+      margin: 5px;
+    }
+    .hero .btn:hover {
+      background: #218838;
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 60px 0;
+      text-align: center;
+    }
+    section h2 {
+      color: #001f3f; /* Dark blue headings */
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    /* Section Backgrounds */
+    section.mission { background: #ffffff; }
+    section.about { background: #e6f9e6; } /* Very light green */
+    section.gallery { background: #f2fff2; } /* Light green tint */
+    section.team { background: #ffffff; }
+    section.logo-section { background: #ffffff; }
+    section.contact { background: #ffffff; }
+    section.donate { background: #e6ffed; } /* Soft green */
+    
+    /* Text Paragraphs */
+    section.mission p,
+    section.about p,
+    section.donate p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 10px auto;
+      text-align: left;
+    }
+    
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Team Section */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .team-member {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-member img {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .team-member h3 {
+      font-size: 22px;
+      margin: 10px 0 5px;
+    }
+    .team-member p.role {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 15px;
+    }
+    .team-member p.bio {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+    .team-member .contact a {
+      margin: 0 5px;
+      color: #28a745;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .team-member .contact a:hover {
+      color: #218838;
+    }
+    
+    /* Logo Section */
+    .logo-section .logo-display img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Contact Section */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .contact-form button {
+      background: #28a745;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #218838;
+    }
+    .contact-info {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+    .contact-info p {
+      margin: 8px 0;
+    }
+    .contact-info a {
+      color: #28a745;
+      font-weight: bold;
+    }
+    .contact-info svg {
+      vertical-align: middle;
+      margin-right: 8px;
+      fill: #28a745;
+    }
+    
+    /* Donate Section */
+    .donate .btn {
+      background: #28a745;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .donate .btn:hover {
+      background: #218838;
+    }
+    
+    /* Footer */
+    footer {
+      background: #001f3f;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid #004080;
+    }
+    
+    /* Modal Styles for Gallery */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 1000px;
+    }
+    .modal-content h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #001f3f;
+    }
+    .modal-content .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .modal-content .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .modal-content .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+    .close {
+      color: #fff;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: -10px;
+      margin-right: -10px;
+    }
+    .close:hover,
+    .close:focus {
+      color: #28a745;
+      text-decoration: none;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      nav ul.nav-list {
+        display: none;
+        flex-direction: column;
+        background: #ffffff;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        z-index: 1000;
+        border-top: 1px solid #eaeaea;
+      }
+      nav ul.nav-list.active {
+        display: flex;
+      }
+      nav ul.nav-list li {
+        margin: 10px 0;
+        text-align: center;
+      }
+      .mobile-menu-icon {
+        display: flex;
+      }
+      .team-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <!-- Logo image added at top left -->
+        <img src="logo.jpg" alt="THEGIVINGFOUNDATION Logo">
+        THEGIVINGFOUNDATION
+      </div>
+      <div class="nav-container">
+        <nav>
+          <ul class="nav-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#logo">Logo</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#donate">Donate</a></li>
+          </ul>
+        </nav>
+        <!-- Mobile hamburger icon -->
+        <div class="mobile-menu-icon" id="mobileMenuIcon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h2>Making a Difference Together</h2>
+      <p>Join us in supporting street children, those with chronic diseases, and children in care.</p>
+      <button class="btn">Donate Now</button>
+      <button class="btn">Volunteer</button>
+      <button class="btn">Learn More</button>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission" id="mission">
+    <div class="container">
+      <h2>Our Mission, Vision &amp; Motto</h2>
+      <p><strong>Motto:</strong> "Give a little, change a lot."</p>
+      <p><strong>Vision:</strong> A world where every child and vulnerable person is embraced with care, opportunity, and love.</p>
+      <p><strong>Mission:</strong> To provide hope, support, and essential resources to street children, those with chronic illnesses, and children in care—empowering communities to create lasting change.</p>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        Founded on the belief that every life matters, THEGIVINGFOUNDATION was born out of a desire to uplift the less privileged.
+        Our journey is marked by milestones that reflect our commitment to transparency, compassion, and community empowerment.
+      </p>
+      <p>
+        With a rich history of grassroots activism and partnerships with local organizations, we continue to grow and adapt,
+        ensuring our programs meet the evolving needs of those we serve.
+      </p>
+      <p>
+        Our board members, dedicated staff, and volunteers form the backbone of our governance, bringing credibility and expertise to our mission.
+        We are proudly accredited by trusted organizations and supported by esteemed partners.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://via.placeholder.com/300x200?text=Photo+1" alt="Photo 1">
+        <img src="https://via.placeholder.com/300x200?text=Photo+2" alt="Photo 2">
+        <img src="https://via.placeholder.com/300x200?text=Photo+3" alt="Photo 3">
+        <img src="https://via.placeholder.com/300x200?text=Photo+4" alt="Photo 4">
+      </div>
+      <button class="btn" id="viewAllGalleryBtn">View All Gallery</button>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team" id="team">
+    <div class="container">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Jane Doe">
+          <h3>Jane Doe</h3>
+          <p class="role">Founder &amp; CEO</p>
+          <p class="bio">Jane is the heart behind THEGIVINGFOUNDATION, with over 10 years of experience in charity work.</p>
+          <div class="contact">
+            <a href="mailto:jane@thegivingfoundation.org">✉️</a>
+            <a href="https://twitter.com/">🐦</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="John Smith">
+          <h3>John Smith</h3>
+          <p class="role">Program Coordinator</p>
+          <p class="bio">John ensures that all our programs run smoothly and efficiently.</p>
+          <div class="contact">
+            <a href="mailto:john@thegivingfoundation.org">✉️</a>
+            <a href="https://linkedin.com/">💼</a>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/150" alt="Emily Rose">
+          <h3>Emily Rose</h3>
+          <p class="role">Volunteer Manager</p>
+          <p class="bio">Emily coordinates our volunteers and plays a vital role in community outreach.</p>
+          <div class="contact">
+            <a href="mailto:emily@thegivingfoundation.org">✉️</a>
+            <a href="https://facebook.com/">👍</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Section -->
+  <section class="logo-section" id="logo">
+    <div class="container">
+      <h2>Our Logo</h2>
+      <p>Our logo represents the spirit and commitment of THEGIVINGFOUNDATION to bring hope and change.</p>
+      <div class="logo-display">
+        <img src="logo.jpg" alt="THEGIVINGFOUNDATION Logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <p>
+          <!-- Updated WhatsApp Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M380.9 97.1c-44.8-44.8-104.7-69.5-167.3-69.5C100.8 27.6 27.6 100.8 27.6 206.2c0 36.1 9.4 71.1 27.2 102.2L0 480l168.5-44.2c29.8 16.3 63.7 25 98.5 25 105.4 0 178.6-73.2 178.6-178.6 0-62.6-24.7-122.5-69.3-167.3zM224 385c-27.3 0-54.1-7.1-77.3-20.5l-5.5-3.3-99.8 26.1 26.6-97.5-3.5-5.8C60.1 271.3 52 246.1 52 219.6 52 124.8 124.8 52 219.6 52S387.2 124.8 387.2 219.6 314.4 387 219.6 387z"/>
+          </svg>
+          WhatsApp: <a href="https://wa.me/0717787256" target="_blank">+254717787256</a>
+        </p>
+        <p>
+          <!-- Updated Phone Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.2.48 2.5.74 3.83.74a1 1 0 011 1v3.5a1 1 0 01-1 1C9.39 22 2 14.61 2 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.33.26 2.63.74 3.83a1 1 0 01-.27 1.11l-2.2 2.2z"/>
+          </svg>
+          Call Us: <a href="tel:+254735653982">+254735653982</a>
+        </p>
+        <p>
+          <!-- Updated Email Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Email: <a href="mailto:info@thegivingfoundation.org">info@thegivingfoundation.org</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate Section -->
+  <section class="donate" id="donate">
+    <div class="container">
+      <h2>Donate</h2>
+      <p>Your support helps us make a difference. Every donation, big or small, brings hope to those in need.</p>
+      <button class="btn">Contribute Now</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 THEGIVINGFOUNDATION. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://via.placeholder.com/300x200?text=Photo+1" alt="Photo 1">
+        <img src="https://via.placeholder.com/300x200?text=Photo+2" alt="Photo 2">
+        <img src="https://via.placeholder.com/300x200?text=Photo+3" alt="Photo 3">
+        <img src="https://via.placeholder.com/300x200?text=Photo+4" alt="Photo 4">
+        <img src="https://via.placeholder.com/300x200?text=Photo+5" alt="Photo 5">
+        <img src="https://via.placeholder.com/300x200?text=Photo+6" alt="Photo 6">
+        <img src="https://via.placeholder.com/300x200?text=Photo+7" alt="Photo 7">
+        <img src="https://via.placeholder.com/300x200?text=Photo+8" alt="Photo 8">
+        <img src="https://via.placeholder.com/300x200?text=Photo+9" alt="Photo 9">
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu & Modal Scripts -->
+  <script>
+    // Mobile Menu Toggle
+    document.getElementById('mobileMenuIcon').addEventListener('click', function(){
+      var navList = document.querySelector('nav ul.nav-list');
+      navList.classList.toggle('active');
+    });
+    // Gallery Modal
+    var modal = document.getElementById("galleryModal");
+    var galleryButton = document.getElementById("viewAllGalleryBtn");
+    var closeModal = document.getElementsByClassName("close")[0];
+    galleryButton.addEventListener("click", function() {
+      modal.style.display = "block";
+    });
+    closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+    window.addEventListener("click", function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
